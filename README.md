@@ -116,6 +116,11 @@ XD 轉 Figma：
 ```
 figma-xd-convert/
 ├── README.md
+├── LICENSE
 └── figma-xd-convert/
     └── SKILL.md      技能本體：流程說明、轉檔程式與 Figma 腳本
 ```
+
+## 授權
+
+採用 [MIT 授權條款](LICENSE)，可以自由使用、修改與散布，只需保留原本的著作權聲明與授權條款。
