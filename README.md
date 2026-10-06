@@ -31,7 +31,7 @@ Figma 沒有匯出 `.xd` 的功能，Adobe XD 也不再積極更新，兩邊都�
 
 ## 需求
 
-- 可以使用技能的 Claude（Claude 應用程式或 Claude Code）。
+- 可以使用技能的 Claude：網頁版、桌面版或 Claude Code 都可以。在網頁版或桌面版使用時，要先啟用程式碼執行功能。
 - 已連接 Figma 連接器，而且連接的帳號對該 Figma 檔案有**編輯權限**。只有檢視權限時，請先把檔案「複製到你的草稿」，再提供複本的連結。
 - 可執行 Python 3 的環境。只用到標準函式庫，不必另外安裝套件。
 - Figma 轉 XD：對方的電腦要安裝設計稿使用的字型，否則 XD 會提示缺字型。
@@ -39,9 +39,28 @@ Figma 沒有匯出 `.xd` 的功能，Adobe XD 也不再積極更新，兩邊都�
 
 ## 安裝
 
-技能本體是 `figma-xd-convert/SKILL.md` 這一個檔案，兩個方向的程式都寫在裡面。
+技能本體是 `figma-xd-convert/SKILL.md` 這一個檔案，兩個方向的程式都寫在裡面。安裝方式有兩種，依使用的環境選擇：
 
-### 一行指令安裝（Claude Code）
+| 使用環境 | 方式一：上傳壓縮檔 | 方式二：一行指令 |
+| --- | --- | --- |
+| Claude 網頁版 | 可以 | 不適用 |
+| Claude 桌面版：聊天與一般工作的分頁 | 可以 | 不適用，這裡不會讀取 `~/.claude/skills/` |
+| Claude 桌面版：「Code」分頁（在自己電腦上執行的工作階段） | 可以 | 可以 |
+| 終端機裡的 Claude Code | 可以，需用同一個帳號登入 | 可以 |
+
+上傳的技能會存在帳號裡並自動同步，同一個帳號登入的網頁版、桌面版與 Claude Code 都能使用。想要到處都能用，選方式一；只在 Claude Code 使用，方式二比較快。
+
+### 方式一：上傳壓縮檔（所有環境都適用）
+
+1. 下載壓好的檔案：[figma-xd-convert.zip](https://github.com/marduklien/figma-xd-convert/releases/latest/download/figma-xd-convert.zip)。不必解壓縮。
+2. 在 Claude 開啟「自訂」→「技能」，新增技能並選擇上傳，把這個 ZIP 檔傳上去。
+3. 確認清單裡 figma-xd-convert 的開關是開啟的。
+
+想自己打包的話，把儲存庫裡的 `figma-xd-convert` 資料夾壓縮成 ZIP 檔即可。壓縮檔的最上層必須是 `figma-xd-convert` 資料夾，資料夾名稱要與技能名稱相同。
+
+介面可能會調整，最新步驟請看官方說明：[在 Claude 中使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)。
+
+### 方式二：一行指令（Claude Code）
 
 ```bash
 npx skills add marduklien/figma-xd-convert -g -a claude-code -y
@@ -59,7 +78,7 @@ npx skills add marduklien/figma-xd-convert -g -a claude-code -y
 
 這行指令使用的是開放原始碼的 [skills](https://github.com/vercel-labs/skills) 工具，不是 Claude 內建的功能。之後要更新到新版，執行 `npx skills update -g`。
 
-### 沒有 Node.js 時
+#### 沒有 Node.js 時
 
 技能只有一個檔案，直接下載到技能目錄也可以。
 
@@ -74,16 +93,6 @@ Windows（PowerShell）：
 ```powershell
 New-Item -ItemType Directory -Force "$HOME\.claude\skills\figma-xd-convert" | Out-Null; Invoke-WebRequest "https://raw.githubusercontent.com/marduklien/figma-xd-convert/main/figma-xd-convert/SKILL.md" -OutFile "$HOME\.claude\skills\figma-xd-convert\SKILL.md"
 ```
-
-### Claude 應用程式
-
-Claude 應用程式的技能要從設定頁面上傳，沒有指令可用：
-
-1. 下載這個儲存庫裡的 `figma-xd-convert` 資料夾（不是整個儲存庫）。
-2. 把這個資料夾壓縮成 ZIP 檔。壓縮檔的最上層必須是 `figma-xd-convert` 資料夾，資料夾名稱要與技能名稱相同。
-3. 在 Claude 的「自訂」→「技能」頁面新增技能，選擇上傳，把 ZIP 檔傳上去。
-
-介面可能會調整，最新步驟請看官方說明：[在 Claude 中使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)。
 
 ## 使用方式
 
