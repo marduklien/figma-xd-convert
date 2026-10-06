@@ -41,25 +41,49 @@ Figma 沒有匯出 `.xd` 的功能，Adobe XD 也不再積極更新，兩邊都�
 
 技能本體是 `figma-xd-convert/SKILL.md` 這一個檔案，兩個方向的程式都寫在裡面。
 
+### 一行指令安裝（Claude Code）
+
+```bash
+npx skills add marduklien/figma-xd-convert -g -a claude-code -y
+```
+
+執行後技能會裝到 `~/.claude/skills/figma-xd-convert/`，所有專案都能使用。需要先安裝 Node.js；macOS、Linux、Windows 都適用。
+
+| 參數 | 作用 |
+| --- | --- |
+| `-g` | 裝到個人層級，所有專案共用。拿掉就只裝到目前所在的專案（`./.claude/skills/`） |
+| `-a claude-code` | 指定安裝給 Claude Code。這個工具也支援其他能使用技能的程式，換成對應的名稱即可 |
+| `-y` | 略過確認，直接安裝 |
+
+三個參數都不加時（`npx skills add marduklien/figma-xd-convert`），會改用互動方式逐項詢問。
+
+這行指令使用的是開放原始碼的 [skills](https://github.com/vercel-labs/skills) 工具，不是 Claude 內建的功能。之後要更新到新版，執行 `npx skills update -g`。
+
+### 沒有 Node.js 時
+
+技能只有一個檔案，直接下載到技能目錄也可以。
+
+macOS 或 Linux：
+
+```bash
+mkdir -p ~/.claude/skills/figma-xd-convert && curl -fsSL https://raw.githubusercontent.com/marduklien/figma-xd-convert/main/figma-xd-convert/SKILL.md -o ~/.claude/skills/figma-xd-convert/SKILL.md
+```
+
+Windows（PowerShell）：
+
+```powershell
+New-Item -ItemType Directory -Force "$HOME\.claude\skills\figma-xd-convert" | Out-Null; Invoke-WebRequest "https://raw.githubusercontent.com/marduklien/figma-xd-convert/main/figma-xd-convert/SKILL.md" -OutFile "$HOME\.claude\skills\figma-xd-convert\SKILL.md"
+```
+
 ### Claude 應用程式
+
+Claude 應用程式的技能要從設定頁面上傳，沒有指令可用：
 
 1. 下載這個儲存庫裡的 `figma-xd-convert` 資料夾（不是整個儲存庫）。
 2. 把這個資料夾壓縮成 ZIP 檔。壓縮檔的最上層必須是 `figma-xd-convert` 資料夾，資料夾名稱要與技能名稱相同。
 3. 在 Claude 的「自訂」→「技能」頁面新增技能，選擇上傳，把 ZIP 檔傳上去。
 
 介面可能會調整，最新步驟請看官方說明：[在 Claude 中使用技能](https://support.claude.com/en/articles/12512180-use-skills-in-claude)。
-
-### Claude Code
-
-把資料夾複製到個人技能目錄，所有專案都能使用：
-
-```bash
-git clone https://github.com/marduklien/figma-xd-convert.git
-mkdir -p ~/.claude/skills
-cp -r figma-xd-convert/figma-xd-convert ~/.claude/skills/
-```
-
-只想在單一專案使用時，改放到該專案的 `.claude/skills/figma-xd-convert/`。
 
 ## 使用方式
 
