@@ -52,7 +52,7 @@ Figma 沒有匯出 `.xd` 的功能，Adobe XD 也不再積極更新，兩邊都�
 
 ### 方式一：上傳壓縮檔（所有環境都適用）
 
-1. 下載壓好的檔案：[figma-xd-convert.zip](https://github.com/marduklien/figma-xd-convert/releases/latest/download/figma-xd-convert.zip)。不必解壓縮。
+1. 下載壓好的檔案：[figma-xd-convert.zip](https://github.com/marduklien/figma-xd-convert/raw/main/figma-xd-convert.zip)。不必解壓縮。
 2. 在 Claude 開啟「自訂」→「技能」，新增技能並選擇上傳，把這個 ZIP 檔傳上去。
 3. 確認清單裡 figma-xd-convert 的開關是開啟的。
 
@@ -150,8 +150,9 @@ XD 轉 Figma：
 figma-xd-convert/
 ├── README.md
 ├── LICENSE
+├── figma-xd-convert.zip      壓好的技能檔，上傳到 Claude 用
 └── figma-xd-convert/
-    └── SKILL.md      技能本體：流程說明、轉檔程式與 Figma 腳本
+    └── SKILL.md              技能本體：流程說明、轉檔程式與 Figma 腳本
 ```
 
 ## 授權
